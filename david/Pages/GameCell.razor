@@ -1,0 +1,26 @@
+﻿<td class=@Color(Row, Col) @onclick="Clicker">@Data</td>
+
+@code {
+
+  [Parameter]
+  public int Row { get; set; }
+
+  [Parameter]
+  public int Col { get; set; }
+
+  [Parameter]
+  public string? Data { get; set; }
+
+  [Parameter]
+  public EventCallback<GameCell> Click { get; set; }
+
+  string Color(int row, int col) => "whitecell";
+
+  private async Task Clicker() => await Click.InvokeAsync(this);
+
+  public void Set(string player)
+  {
+    Data = player;
+  }
+}
+

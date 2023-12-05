@@ -1,7 +1,40 @@
 ﻿@page "/"
+@using TTT
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Tic-Tac-Toe</PageTitle>
 
-<h1>Hello, wereld!</h1>
+<table border="1">
+  @for (int row = 0; row < size; row++)
+  {
+    <tr>
+      @for (int col = 0; col < size; col++)
+      {
+        <GameCell Row=row Col=col Click=@Move />
+      }
+    </tr>
+  }
+</table>
 
-Welcome to your new app.
+@Player
+
+
+@code
+{
+  const int size = 3;
+
+  string Player = "X";
+
+  GameCell? cell;
+
+  TicTacToe game = new(size);
+
+  void Move(GameCell cell)
+  {
+    this.cell = cell;
+    if (string.IsNullOrWhiteSpace(cell.Data))
+    {
+      cell.Set(Player);
+      Player = Player == "X" ? "O" : "X";
+    }
+  }
+}

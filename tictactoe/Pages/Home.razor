@@ -1,0 +1,35 @@
+﻿@using TTT
+@page "/"
+
+<PageTitle>Tic-Tac-Toe</PageTitle>
+
+<table border="1">
+  @for (int row = 0; row < size; row++)
+  {
+    <tr>
+      @for (int col = 0; col < size; col++)
+      {
+        <GameCell Row=row Col=col Data=@game.Board[row, col] OnPlayed=@game.Play/>
+      }
+    </tr>
+  }
+</table>
+
+@Message
+
+@code
+{
+  const int size = 3;
+  TicTacToe game = new(3);
+
+  string? Message;
+
+  protected override void OnParametersSet()
+  {
+    game.ShowMessage += (o, e) =>
+    {
+      Message = e.Message;
+      StateHasChanged();
+    };
+  }
+}

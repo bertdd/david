@@ -1,0 +1,21 @@
+﻿@namespace TTT
+<td class=@Color(Row, Col) @onclick="Clicked">@Data</td>
+
+@code {
+
+  [Parameter]
+  public int Row { get; set; }
+
+  [Parameter]
+  public int Col { get; set; }
+
+  [Parameter]
+  public string Data { get; set; } = "";
+
+  [Parameter]
+  public EventCallback<GameCell> OnPlayed { get; set; }
+
+  string Color(int row, int col) => "gameCellWhite"; // (col % 2 == row % 2) ? "gameCellBlack" : "gameCellWhite";
+
+  async Task Clicked() => await OnPlayed.InvokeAsync(this);
+}

@@ -76,17 +76,19 @@ code {
     color: #c02d76;
 }
 
-.blackcell
-{
-  width:100px;
-  height:100px;
-  background-color: black;
+.gameCellBlack {
+   text-align: center;
+   height:100px;
+   width:100px;
+   background-color:black;
 }
 
-.whitecell {
+.gameCellWhite {
   text-align: center;
-  font-size: 40px;
-  width: 100px;
   height: 100px;
-  background-color:white;
+  width: 100px;
+  background-color: white;
 }
+
+
+
